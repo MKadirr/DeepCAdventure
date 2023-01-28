@@ -1,9 +1,6 @@
-#include <stdlib.h>
 
-struct Case{
-    struct Case* next;
-    int stack[4];
-};
+#include "dca_lib.h"
+
 
 int getNbTreasure(int stock[])
 {

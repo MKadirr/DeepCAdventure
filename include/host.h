@@ -11,6 +11,8 @@
 
     #define MAX_PLAYER 6
 
+    //game stats
+
     //player
 
     typedef struct Player{

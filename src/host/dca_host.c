@@ -6,6 +6,7 @@
 
 
 
+
 int genPlayer(struct Player* Players, char *name, int socket)
 {
     int i = 0;
@@ -27,6 +28,8 @@ int main(int argc, char** argv)
     for(int i = 0; i < MAX_PLAYER; i++)
         Players->socket = -1;
 
+
+    
     
 }
 

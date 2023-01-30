@@ -7,6 +7,12 @@
     #define TRUE 1
     #define FALSE 0
 
+
+    //Tag definer
+    #define HPING 1;
+
+
+
     typedef struct Case{
         struct Case* next;
         int id_player;
@@ -20,7 +26,13 @@
     void destroyBoard(struct Case* c);
 
     //handel.c
+    struct Flag_handel{
+        int tag;
+    };
 
+    struct Name_handel{
+        char name[16];
+    };
     //
 
 

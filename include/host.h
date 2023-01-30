@@ -1,6 +1,10 @@
 #include <stdlib.h>
 #include "../src/lib/dca_lib.h"
 #include "../src/win_lib/win_lib.h"
+#include <winsock2.h>
+#include <string.h>
+#include <stdio.h>
+#include <windows.h>
 
 #ifndef _HOST_
     #define _HOST_

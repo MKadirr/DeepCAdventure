@@ -1,5 +1,5 @@
 #include <winsock2.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -9,7 +9,9 @@
 int main(int argv, char *argc[])
 {
     if(argv < 2)
-        printf("No ip given");
+        printf("No ip given, aborted...");
+        exit(EXIT_FAILURE);
+
     
     int socketClient = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in addrCLient;
@@ -23,7 +25,7 @@ int main(int argv, char *argc[])
     close(socketClient);
     return 0;
     
-    
+
 }
 /*
 	int socketClient = socket(AF_INET, SOCK_STREAM, 0);

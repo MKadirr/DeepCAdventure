@@ -2,7 +2,11 @@
 
 Random info:
 
+
 Game info:
 -6 joueurs
 -possible d'empiler autant de pierre que souhaité sur une case
 -Les pierres sont randoms (les plages sont/seront definies dans include/host.h)
+
+Info de reseau:
+- port set sur 33 333

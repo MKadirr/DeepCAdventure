@@ -13,26 +13,53 @@
 
 
     //Tag definer
-    #define TEXIT 0;
-    #define TPING 1;
-    #define TASK_NAME 2;
-    #define TBEGIN 3;
-    #define TUTURN 4;
+        //server->client (0-127)
+        #define TPING 1;
+        #define TASK_NAME 2;
+        #define TBEGIN 3;
+        #define TUTURN 4;
+        #define TEND 5;
+
+        //server->client (128-255)
+        #define TEXIT 255;
 
     //Connection
     #define BASE_PORT 33333
 
 
-
+    //struct
     typedef struct Case{
         struct Case* next;
-        int id_player;
-        int stack[4];
+        struct Case* previous;
+        struct Player* player;
+
+        int deep;
+        char stack[4];
     };
+
+    typedef struct Player{
+        int socket;
+        char name[16];
+        int inv[7][4];
+
+        struct Case* pos;
+
+        int total_point;
+
+        char ascending;
+        char inSubmarine;
+    };
+
+    //palyer.c
+    void printPalyer(struct Player* p);
 
     //board.c
     int getNbTreasure(int stock[]);
+    void printStock(int stock[]);
     struct Case* genBoard();
+    void printCase(struct Case* c);
+    void printBoard(struct Case* c);
+    void numerote(struct Case* c, int deep);
     void clean(struct Case* c);
     void destroyBoard(struct Case* c);
 

@@ -16,8 +16,7 @@ Info de reseau:
         serve->client: TASK_NAME
         client->server: char[16]
 
-        pause:
-            en attentente du debut de la pratie
+        pause //en attentente du debut de la pratie
 
         server->client : TBEGIN
 
@@ -25,15 +24,28 @@ Info de reseau:
 
 
     II) les flags (char)
-        0) exit (TEXIT : 0)
+        
+
+        1) ping (TPING : 1)
+            server->client
+            serveur attend un int pendant 30s puis ferme le dialogue si rien n'est repondu
+
+        2) ask_name (TASK_NAME : 2)
+            server->client
+            serveur attend un char[16]
+
+        3)beginning (TBEGIN : 3)
+            server->client
+            annonce le debut de partie (pas de retour attendu)
+
+        4)ur turn (TUTURN : 4)
+            server->client
+            serveur attend un struct Action{}
+        
+
+        255) exit (TEXIT : 255)
             client->server
             ferme la connection avec le client coté serveur
 
-        1) ping (TPING : 1)
-            client<->server
-            serveur renvoie un int
-
-        2) ask_name (TASK_NAME : 3)
-            server->client
-
-
+(1(2(4(8()())(9()()))(5()())(3()()))
+(15(8(1()())(12(10()())()))(28(20()(23()())(42(35()())(66()()))))

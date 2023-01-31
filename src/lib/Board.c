@@ -2,11 +2,17 @@
 #include "dca_lib.h"
 
 
+
 int getNbTreasure(int stock[])
 {
-    if(len(stock) < 4) return -1;
+    if(len(stock) < 4) return 0;
 
     return stock[0] + stock[1] + stock[2] + stock[3];
+}
+
+void printStock(int stock[])
+{
+    printf("[%d,%d,%d,%d]",stock[0],stock[1],stock[2],stock[3]);
 }
 
 struct Case* genBoard()
@@ -26,6 +32,7 @@ struct Case* genBoard()
 
             tmp->stack[i] = 1;
             tmp->next = NULL;
+            tmp->previous = act;
 
             if(i == 0 && j == 0) head = tmp;
             act->next = tmp;
@@ -33,6 +40,55 @@ struct Case* genBoard()
     }
 
     return head;
+}
+
+void printCase(struct Case* c)
+{
+    if(c == NULL) return;
+    
+    printf("%d) ");
+
+    int tmp = getNbTreasure(c->stack);
+    if(tmp == 0)
+        printf("empty\n");
+    else if (tmp == 1)
+    {
+        if(c->stack[0]) tmp = 1;
+        if(c->stack[1]) tmp = 2;
+        if(c->stack[2]) tmp = 3;
+        if(c->stack[3]) tmp = 4;
+
+        printf("treasur T%d\n", tmp);
+    }
+    else
+    {
+        printStock(c->stack);
+        printf("\n");
+    }
+
+    if(c->player == NULL)
+    {
+        printf("Player : ");
+        printPlayer(c->player);
+    }
+}
+
+void printBoard(struct Case* c)
+{
+    if(c == NULL) return;
+
+    if(c->deep == 0)
+    printf("Submarine\n");
+    printCase(c->next);
+}
+
+void numerote(struct Case* c, int deep)
+{
+    if(c != NULL)
+    {
+        c->deep = deep;
+        numerote(c->next, deep + 1);
+    }
 }
 
 void clean(struct Case* c)

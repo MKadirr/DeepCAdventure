@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "../win_lib/win_lib.h"
-#include "../lib/dca_lib.h"
+#include "client_win_lib/win_lib.h"
+#include "lib/dca_lib.h"
 
 int main(int argv, char *argc[])
 {

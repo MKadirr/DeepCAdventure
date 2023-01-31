@@ -17,8 +17,9 @@ void printStock(int stock[])
 
 struct Case* genBoard()
 {
-    struct Case* head = NULL;
-    struct Case* act = NULL;
+    struct Case* head = (struct Case*)malloc(sizeof(struct Case*));
+    for(int k =0; k < 4; k++) head->stack[k] = 0;
+    struct Case* act = head;
     struct Case* tmp = NULL;
     
     
@@ -34,10 +35,11 @@ struct Case* genBoard()
             tmp->next = NULL;
             tmp->previous = act;
 
-            if(i == 0 && j == 0) head = tmp;
             act->next = tmp;
         }
     }
+
+    numerote(head, 0);
 
     return head;
 }

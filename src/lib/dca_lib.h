@@ -52,6 +52,7 @@
 
     //palyer.c
     void printPalyer(struct Player* p);
+    int move(struct Player* p, int n);
 
     //board.c
     int getNbTreasure(int stock[]);

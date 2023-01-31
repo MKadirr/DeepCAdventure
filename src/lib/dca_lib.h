@@ -7,7 +7,6 @@
     #define TRUE 1
     #define FALSE 0
 
-    
     //game stats
     #define MAX_PLAYER 6
     #define MAX_OXYGEN 25
@@ -20,7 +19,8 @@
     #define TBEGIN 3;
     #define TUTURN 4;
 
-
+    //Connection
+    #define BASE_PORT 33333
 
 
 

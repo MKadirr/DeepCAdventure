@@ -20,7 +20,7 @@
         #define TUTURN 4;
         #define TEND 5;
 
-        //server->client (128-255)
+        //client->server (128-255)
         #define TEXIT 255;
 
     //Connection
@@ -68,7 +68,6 @@
         char tag;
         int advanced_data;
     };
-    //
 
 
 #endif

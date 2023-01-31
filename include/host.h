@@ -13,9 +13,7 @@
     #define TRUE 1
     #define FALSE 0
 
-    #define MAX_PLAYER 6
-
-    //game stats
+    
 
     //player
 

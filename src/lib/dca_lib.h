@@ -7,9 +7,20 @@
     #define TRUE 1
     #define FALSE 0
 
+    
+    //game stats
+    #define MAX_PLAYER 6
+    #define MAX_OXYGEN 25
+
 
     //Tag definer
-    #define HPING 1;
+    #define TEXIT 0;
+    #define TPING 1;
+    #define TASK_NAME 2;
+    #define TBEGIN 3;
+    #define TUTURN 4;
+
+
 
 
 
@@ -26,12 +37,9 @@
     void destroyBoard(struct Case* c);
 
     //handel.c
-    struct Flag_handel{
-        int tag;
-    };
-
-    struct Name_handel{
-        char name[16];
+    struct Flag_sock{
+        char tag;
+        int advanced_data;
     };
     //
 

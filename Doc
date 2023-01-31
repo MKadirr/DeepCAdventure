@@ -10,3 +10,30 @@ Game info:
 
 Info de reseau:
 - port set sur 33 333
+
+    I) Le protocole:
+        client->server: demande de connection
+        serve->client: TASK_NAME
+        client->server: char[16]
+
+        pause:
+            en attentente du debut de la pratie
+
+        server->client : TBEGIN
+
+
+
+
+    II) les flags (char)
+        0) exit (TEXIT : 0)
+            client->server
+            ferme la connection avec le client coté serveur
+
+        1) ping (TPING : 1)
+            client<->server
+            serveur renvoie un int
+
+        2) ask_name (TASK_NAME : 3)
+            server->client
+
+

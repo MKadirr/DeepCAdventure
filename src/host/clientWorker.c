@@ -1,12 +1,14 @@
 #include "../../include/host.h"
 
-void CLientService(int socket)
+void* CLientService(int socket, struct Player* Players)
 {
-    struct Flag_handel flag;
+
+
+    struct Flag_sock flag;
     int isListening = 1;
     while(isListening)
     {
-        recv(socket, (struct Flag_handel*)&flag, sizeof(struct Flag_handel), 0);
+        recv(socket, (struct Flag_sock*)&flag, sizeof(struct Flag_sock), 0);
     }
     
 }

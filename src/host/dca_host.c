@@ -1,29 +1,9 @@
 #include "../../include/host.h"
 
 
-#include <string.h>
-
-void* accueil(int socketServer, struct Player* Players)
-{
-	struct sockaddr_in addrClient;
-	int csize = sizeof(addrClient);
-
-
-	for(int i = 0; i < MAX_PLAYER; i++)
-	{
-		Players[i].socket = accept(socketServer, (struct sockaddr *)&addrClient, &csize);
-		
-		for(int k = 0; i < 7; i++)
-        for(int j = 0; j < 4; j++)
-            Players[i].inv[k][j] = 0;
-		printf("New Player: \n");
-	}
-}
-
-
 int main(int argc, char** argv)
 {
-    if(argv < 2)
+    if(argc < 2)
     {
 		printf("No ip given, aborted...");
         exit(EXIT_FAILURE);
@@ -59,9 +39,10 @@ int main(int argc, char** argv)
 	printf("client: %d. Welcome\n", Players[0].socket);
 
 	char buffer[64];
+	size_t size_buffer = sizeof(buffer);
 	for(int i = 1; i < 6; i++)
 	{
-		getline(buffer, 63, stdin);
+		getline((char **)&buffer, (size_t *)&size_buffer, stdin);
 		if(strcmp(buffer, ""))
 		Players[1].socket = accept(socketServer, (struct sockaddr *)&addrClient, &csize);
 		printf("New player: %d\n", Players[1].socket);

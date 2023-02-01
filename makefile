@@ -6,14 +6,15 @@ SRC_LIB = src/lib/Board.c \
 OBJ = $(SRC:.c=.o) \
 	  $(SRC_LIB:.c=.o) \
 
-NAME_H = host
+NAME_H = host.exe
 SRC_H = src/host/dca_host.c
 
-NAME_C = client
+NAME_C = client.exe
 SRC_C = src/client.c
 
 all: 
-	$(NAME)
+	client
+	host
 
 W_FLAG = -W -Wall -Wextra -g3 -Os
 
@@ -21,7 +22,8 @@ W_REC_FLAG = -lws2_32
 
 LAST_FLAG = -Werror -ansi -pedantic 
 
-$(NAME): host
+$(NAME): 
+	host
 	client
 
 host:
@@ -40,8 +42,9 @@ clean:
 	rm -f $(OBJ)
 
 fclean: 
-	clean;
-	rm -f $(NAME)
+	clean
+	rm -f $(NAME_H)
+	rm -f $(NAME_C)
 
 re:		
 	fclean all

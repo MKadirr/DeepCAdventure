@@ -40,7 +40,7 @@
     };
 
     typedef struct Player{
-        int socket;
+        unsigned int socket;
         char name[16];
         char inv[7][4];
 

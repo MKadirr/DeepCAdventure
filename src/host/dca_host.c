@@ -24,15 +24,17 @@ void* accueil(int socketServer, struct Player* Players)
 int main(int argc, char** argv)
 {
     if(argv < 2)
-        printf("No ip given, aborted...");
+    {
+		printf("No ip given, aborted...");
         exit(EXIT_FAILURE);
+	}
 
 
     struct Player Players[MAX_PLAYER];
 
     for(int i = 0; i < MAX_PLAYER; i++)
     {
-        Players->socket = -1;
+        Players->socket = INVALID_SOCKET;
     }
 	
 
@@ -49,12 +51,35 @@ int main(int argc, char** argv)
 	printf("listen\n");
 
 	
+	struct sockaddr_in addrClient;
+	int csize = sizeof(addrClient);
+	Players[0].socket = accept(socketServer, (struct sockaddr *)&addrClient, &csize);
+	printf("accept\n");
+
+	printf("client: %d. Welcome\n", Players[0].socket);
+
+	char buffer[64];
+	for(int i = 1; i < 6; i++)
+	{
+		getline(buffer, 63, stdin);
+		if(strcmp(buffer, ""))
+		Players[1].socket = accept(socketServer, (struct sockaddr *)&addrClient, &csize);
+		printf("New player: %d\n", Players[1].socket);
+	}
 
 
 
 
+	for(int i = 0; i < 6; i++)
+	{
+		if(Players[i].socket != INVALID_SOCKET) 
+		{
+			closesocket(Players[i].socket);
+			printf("client %d closed\n", i);
+		}
+	}
 
-    close(socketServer);
+    closesocket(socketServer);
 	printf("close\n");
 
 	printf("test\n");

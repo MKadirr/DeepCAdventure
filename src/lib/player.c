@@ -1,6 +1,6 @@
-#include "dca_lib.h"
+#include "../../include/dca_lib.h"
 
-void printPalyer(struct Player* p)
+void printPlayer(struct Player* p)
 {
     if(p == NULL) return;
     printf("%s(score : %d)\n",p->name, p->total_point);
@@ -60,4 +60,6 @@ int move(struct Player* p, int n)
     p->pos->player = NULL;
     p->pos = tmp;
     p->pos->player = p;
+
+    return(p->pos->deep);
 }

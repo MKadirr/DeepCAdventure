@@ -1,9 +1,9 @@
 #include <stdlib.h>
-#include <winsock2.h>
 #include <string.h>
 #include <stdio.h>
-#include <windows.h>
-#include "../src/lib/dca_lib.h"
+
+#include "dca_lib.h"
+#include "win_lib.h"
 
 #ifndef _HOST_
     #define _HOST_

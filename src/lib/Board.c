@@ -1,16 +1,14 @@
 
-#include "dca_lib.h"
+#include "../../include/dca_lib.h"
 
 
 
-int getNbTreasure(int stock[])
+int getNbTreasure(char stock[])
 {
-    if(len(stock) < 4) return 0;
-
     return stock[0] + stock[1] + stock[2] + stock[3];
 }
 
-void printStock(int stock[])
+void printStock(char stock[])
 {
     printf("[%d,%d,%d,%d]",stock[0],stock[1],stock[2],stock[3]);
 }
@@ -48,7 +46,7 @@ void printCase(struct Case* c)
 {
     if(c == NULL) return;
     
-    printf("%d) ");
+    printf("%d) ",c->deep);
 
     int tmp = getNbTreasure(c->stack);
     if(tmp == 0)

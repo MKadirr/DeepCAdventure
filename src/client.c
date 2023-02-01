@@ -4,14 +4,16 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "client_win_lib/win_lib.h"
-#include "lib/dca_lib.h"
+#include "../include/win_lib.h"
+#include "../include/dca_lib.h"
 
 int main(int argv, char *argc[])
 {
     if(argv < 2)
+	{
         printf("No ip given, aborted...");
         exit(EXIT_FAILURE);
+	}
 
     
     int socketClient = socket(AF_INET, SOCK_STREAM, 0);
@@ -23,7 +25,7 @@ int main(int argv, char *argc[])
     connect(socketClient, (const struct sockaddr*)&addrCLient, sizeof(addrCLient));
     printf("connecté\n");
 
-    close(socketClient);
+    closesocket(socketClient);
     return 0;
     
 

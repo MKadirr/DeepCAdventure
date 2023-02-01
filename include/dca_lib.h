@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #ifndef _DCALIB_
     #define _DCALIB_
@@ -40,7 +42,7 @@
     typedef struct Player{
         int socket;
         char name[16];
-        int inv[7][4];
+        char inv[7][4];
 
         struct Case* pos;
 
@@ -51,12 +53,12 @@
     };
 
     //palyer.c
-    void printPalyer(struct Player* p);
+    void printPlayer(struct Player* p);
     int move(struct Player* p, int n);
 
     //board.c
-    int getNbTreasure(int stock[]);
-    void printStock(int stock[]);
+    int getNbTreasure(char stock[]);
+    void printStock(char stock[]);
     struct Case* genBoard();
     void printCase(struct Case* c);
     void printBoard(struct Case* c);

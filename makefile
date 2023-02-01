@@ -1,35 +1,49 @@
+SRC_LIB = src/lib/Board.c \
+		  src/lib/Player.c \
 
 
-SRC = src/lib/*.c \
-      src/host.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o) \
+	  $(SRC_LIB:.c=.o) \
 
-NAME = dcahost
+NAME_H = host
+SRC_H = src/host/dca_host.c
 
-all: $(NAME)
+NAME_C = client
+SRC_C = src/client.c
+
+all: 
+	$(NAME)
 
 W_FLAG = -W -Wall -Wextra -g3 -Os
 
-LAST_FLAG = -Werror -ansi -pedantic
+W_REC_FLAG = -lws2_32
 
-$(NAME):
-		gcc $(NAME) -I include -o $(NAME) -g -lm
+LAST_FLAG = -Werror -ansi -pedantic 
 
+$(NAME): host
+	client
 
-val: $(NAME)
-		valgrind ./$(NAME)
+host:
+	gcc $(SRC_H) $(SRC_LIB) -I include -o $(NAME_H) -g -lm $(W_FLAG) $(W_REC_FLAG)
 
-push: fclean
-      git add .
-	  echo git commit -m ""
-	  echo push
+client:
+	gcc $(SRC_C) $(SRC_LIB) -I include -o $(NAME_C) -g -lm $(W_FLAG) $(W_REC_FLAG)
+
+push:
+	fclean
+	git add .
+	echo git commit -m ""
+	echo push
 
 clean:
-		rm -f $(OBJ)
+	rm -f $(OBJ)
 
-fclean: clean
-        rm -f $(NAME)
-re:		fclean all
+fclean: 
+	clean;
+	rm -f $(NAME)
+
+re:		
+	fclean all
 
 .PHONY: all fclean clean re

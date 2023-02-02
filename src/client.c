@@ -15,6 +15,8 @@ int main(int argv, char *argc[])
         exit(EXIT_FAILURE);
 	}
 
+	WSADATA cotest;
+	WSAStartup(MAKEWORD(2,2), (LPWSADATA)&cotest);
     
     int socketClient = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in addrCLient;
@@ -22,8 +24,13 @@ int main(int argv, char *argc[])
 	addrCLient.sin_family = AF_INET;
 	addrCLient.sin_port = htons(BASE_PORT);
 
+	getchar();
+
     connect(socketClient, (const struct sockaddr*)&addrCLient, sizeof(addrCLient));
     printf("connecté\n");
+
+	char test[16] = "test bruh";
+	send(socketClient, (char *)&test, sizeof(test), 0);
 
     closesocket(socketClient);
     return 0;

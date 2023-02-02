@@ -37,7 +37,7 @@
 
         int deep;
         char stack[4];
-    };
+    } Case;
 
     typedef struct Player{
         unsigned int socket;
@@ -50,7 +50,7 @@
 
         char ascending;
         char inSubmarine;
-    };
+    } Player;
 
     //palyer.c
     void printPlayer(struct Player* p);

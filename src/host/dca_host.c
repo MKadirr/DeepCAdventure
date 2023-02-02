@@ -10,6 +10,8 @@ int main(int argc, char** argv)
 	}
 
 
+	printf("%s]\n", argv[1]);
+
     struct Player Players[MAX_PLAYER];
 
     for(int i = 0; i < MAX_PLAYER; i++)
@@ -17,6 +19,8 @@ int main(int argc, char** argv)
         Players->socket = INVALID_SOCKET;
     }
 	
+	WSADATA cotest;
+	WSAStartup(MAKEWORD(2,2), (LPWSADATA)&cotest);
 
     int socketServer = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in addrServer;
@@ -27,8 +31,12 @@ int main(int argc, char** argv)
     bind(socketServer, (const struct sockaddr *)&addrServer, sizeof(addrServer));
 	printf("bind : %d\n", socketServer);
 
+	printf("error : %d\n", WSAGetLastError());
+
     listen(socketServer, MAX_PLAYER);
 	printf("listen\n");
+
+	getchar();
 
 	
 	struct sockaddr_in addrClient;
@@ -40,7 +48,7 @@ int main(int argc, char** argv)
 
 	char buffer[64];
 	size_t size_buffer = sizeof(buffer);
-	for(int i = 1; i < 6; i++)
+	/*for(int i = 1; i < 6; i++)
 	{
 		getline((char **)&buffer, (size_t *)&size_buffer, stdin);
 		if(strcmp(buffer, ""))
@@ -58,8 +66,16 @@ int main(int argc, char** argv)
 			closesocket(Players[i].socket);
 			printf("client %d closed\n", i);
 		}
-	}
+	}*/
 
+	char test[16];
+	
+
+	recv(Players[0].socket, (char *)&test, 16, 0);
+
+	printf(test); putchar('\n');
+
+	closesocket(Players[0].socket);
     closesocket(socketServer);
 	printf("close\n");
 

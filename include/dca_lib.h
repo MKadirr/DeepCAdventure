@@ -15,10 +15,19 @@
     #define NB_TURN 3
 
     // min/max treasur value
-
     #define SMALL_MIN 0
     #define SMALL_MAX 4
     #define MEDIUM_MIN 5
+
+    //Name
+    #define SLOT_0  0b00000001
+    #define SLOT_1  0b00000010
+    #define SLOT_2  0b00000100
+    #define SLOT_4  0b00001000
+    #define SLOT_5  0b00010000
+    #define SLOT_6  0b00100000
+    #define SLOT_7  0b01000000
+    #define PICK_UP 0b10000000
 
 
     //struct

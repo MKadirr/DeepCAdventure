@@ -16,6 +16,15 @@ void printPlayer(struct Player* p)
     printf("\n");
 }
 
+void getNbStack(struct Player* p)
+{
+    if(p == NULL) return 0;
+
+    int j = 0;
+    for(int i = 0;  i < 7) if(p->inv[i]) j++;
+
+}
+
 /// @brief move player 
 /// @param p palyer concerned
 /// @param n positive to go deeper, negative otherwise

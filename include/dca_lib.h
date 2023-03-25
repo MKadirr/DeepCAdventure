@@ -12,21 +12,13 @@
     //game stats
     #define MAX_PLAYER 6
     #define MAX_OXYGEN 25
+    #define NB_TURN 3
 
+    // min/max treasur value
 
-    //Tag definer
-        //server->client (0-127)
-        #define TPING 1;
-        #define TASK_NAME 2;
-        #define TBEGIN 3;
-        #define TUTURN 4;
-        #define TEND 5;
-
-        //client->server (128-255)
-        #define TEXIT 255;
-
-    //Connection
-    #define BASE_PORT 33333
+    #define SMALL_MIN 0
+    #define SMALL_MAX 4
+    #define MEDIUM_MIN 5
 
 
     //struct
@@ -40,7 +32,8 @@
     } Case;
 
     typedef struct Player{
-        unsigned int socket;
+        int (*Move) (struct GameStatement, struct Player, void*);
+        void* argument;
         char name[16];
         char inv[7][4];
 
@@ -52,9 +45,20 @@
         char inSubmarine;
     } Player;
 
+    typedef struct GameStatement{
+        int nbPlayer;
+        struct Player* Players;
+
+        struct Case* Board;
+
+        int nbTurn;
+        int MaxOxigene;
+    } GameStatement;
+
     //palyer.c
     void printPlayer(struct Player* p);
     int move(struct Player* p, int n);
+    void getNbStack(struct Player* p);
 
     //board.c
     int getNbTreasure(char stock[]);

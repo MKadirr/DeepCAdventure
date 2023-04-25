@@ -60,12 +60,14 @@ void Start(struct GameStatement* gt)
                 }
                 else
                 {
-                    Drop(Take(gt->Players[curPlayer].pos->stack, gt->Players[curPlayer]), choice)
+                    Drop(gt->Players[curPlayer].pos->stack, gt->Players[curPlayer], choice)
                 }
             }
 
             curPlayer++;
         }
+
+        
     }
     
 }

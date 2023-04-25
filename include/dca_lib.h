@@ -74,8 +74,8 @@
 
     //player.c
 
-    Take(char* treasure, 
-         struct Player* player);
+    void Take(char* treasure, struct Player* player);
+    void Drop(char* treasure, struct Player* player, char choice)
     void printPlayer(struct Player* p);
     int move(struct Player* p, int n);
     void getNbStack(struct Player* p);

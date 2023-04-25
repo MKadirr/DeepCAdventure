@@ -25,10 +25,43 @@ void getNbStack(struct Player* p)
 
 }
 
+void
+Take(char* treasure, 
+     struct Player* player)
+{
+    char i = 0;
+    while(getNbTreasure(player.inv[i])) i++;
+
+    player.inv[i][0] = treasure[0];
+    player.inv[i][1] = treasure[1];
+    player.inv[i][2] = treasure[2];
+}
+
+void
+Drop(char* treasure, 
+     struct Player* player,
+     char choice)
+{
+    for(int i = 0; choice; i++)
+    { 
+        if(choice&1)
+        {
+            treasure[0] += player.inv[i][0]
+            player.inv[i][0] = 0;
+            treasure[1] += player.inv[i][1]
+            player.inv[i][1] = 0;
+            treasure[2] += player.inv[i][2]
+            player.inv[i][2] = 0;
+        }
+
+        choice >>= 1;
+    }
+}
+
 /// @brief move player 
 /// @param p palyer concerned
 /// @param n positive to go deeper, negative otherwise
-/// @return 
+/// @return deepth of the player
 int move(struct Player* p, int n)
 {
     struct Case* tmp = p->pos;

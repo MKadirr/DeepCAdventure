@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <Time.h>
 
 #ifndef _DCALIB_
     #define _DCALIB_
@@ -28,6 +29,7 @@
     #define SLOT_6  0b00100000
     #define SLOT_7  0b01000000
     #define PICK_UP 0b10000000
+    #define DO_NOTHING 0
 
 
     //struct
@@ -41,7 +43,13 @@
     } Case;
 
     typedef struct Player{
-        int (*Move) (struct GameStatement, struct Player, void*);
+        // move select between >0 => go deeper, else go upper
+        char (*Move) (struct GameStatement, struct Player, void*);
+
+        /*
+            return a action between take (0b1xxxxxxx/PIKC_UP), drop (0b0gfedcba, with a to drop case 1, b case b, etc), nothing (0/DO_NOTHING)
+        */
+        char (*Action) (struct GameStatement, struct Player, void*);
         void* argument;
         char name[16];
         char inv[7][4];
@@ -64,7 +72,10 @@
         int MaxOxigene;
     } GameStatement;
 
-    //palyer.c
+    //player.c
+
+    Take(char* treasure, 
+         struct Player* player);
     void printPlayer(struct Player* p);
     int move(struct Player* p, int n);
     void getNbStack(struct Player* p);

@@ -38,8 +38,9 @@ void Start(struct GameStatement* gt)
             while(k && !choice)
             {
                 choice = gt->Players[curPlayer].Move(gt, gt->Players[curPlayer], gt->Players[curPlayer]->argument);
-                if(choice >= 0 && gt->Players[curPlayer].ascending)choice = 0;
+                if(choice >= 0 && gt->Players[curPlayer].ascending) choice = 0;
             }
+            
 
             
         }
